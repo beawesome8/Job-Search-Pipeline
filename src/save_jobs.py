@@ -19,6 +19,7 @@ from datetime import datetime
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import DB_PATH, TARGET_ROLES
 from fetch_arbeitnow import fetch_jobs, filter_by_role, parse_args
+from citizenship_filter import check_citizenship_risk
 
 
 def save_jobs(jobs):
@@ -26,21 +27,25 @@ def save_jobs(jobs):
     Inserts new job postings into the jobs table. Rows with a URL
     that already exists are silently skipped (INSERT OR IGNORE
     relies on the UNIQUE constraint on jobs.url defined in
-    schema.sql). Returns the count of rows actually inserted.
+    schema.sql). Returns a tuple of (inserted_count, flagged_count).
     """
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     inserted = 0
+    flagged = 0
 
     for job in jobs:
         posted_at = datetime.fromtimestamp(job["created_at"]).isoformat()
+        risk = check_citizenship_risk(job)
+        if risk == "flagged":
+            flagged += 1
 
         cursor.execute(
             """
             INSERT OR IGNORE INTO jobs
                 (source, external_id, title, company, location, url,
-                 description, posted_at, prefilter_passed)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                 description, posted_at, prefilter_passed, citizenship_risk)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 "arbeitnow",
@@ -52,6 +57,7 @@ def save_jobs(jobs):
                 job["description"],
                 posted_at,
                 1,
+                risk,
             ),
         )
         if cursor.rowcount > 0:
@@ -59,7 +65,7 @@ def save_jobs(jobs):
 
     conn.commit()
     conn.close()
-    return inserted
+    return inserted, flagged
 
 
 def main():
@@ -72,10 +78,12 @@ def main():
     matched_jobs = filter_by_role(jobs, roles_to_match)
     print(f"{len(matched_jobs)} matched target role(s): {', '.join(roles_to_match)}")
 
-    inserted_count = save_jobs(matched_jobs)
+    inserted_count, flagged_count = save_jobs(matched_jobs)
     skipped_count = len(matched_jobs) - inserted_count
     print(f"Inserted {inserted_count} new job(s) into the database "
           f"({skipped_count} already existed and were skipped).")
+    print(f"{flagged_count} of the inserted jobs were flagged for possible "
+          f"citizenship/clearance requirements, review these before tailoring.")
 
 
 if __name__ == "__main__":

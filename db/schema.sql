@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS jobs (
     language TEXT,                          -- 'de' or 'en', drives which resume language to use
     posted_at TIMESTAMP,                    -- when the job was actually posted (may be unknown)
     date_scraped TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- when WE found it
-    prefilter_passed INTEGER DEFAULT 0,     -- 0/1: did it clear the cheap keyword/citizenship check?
+    prefilter_passed INTEGER DEFAULT 0,     -- 0/1: did it clear the cheap role-match check?
+    citizenship_risk TEXT DEFAULT 'clear',  -- 'clear' or 'flagged', from the keyword pre-scan
     alerted_fresh INTEGER DEFAULT 0,        -- 0/1: have you already gotten the instant alert for this?
     alerted_digest INTEGER DEFAULT 0        -- 0/1: have you already gotten the scored digest alert?
 );
