@@ -99,6 +99,77 @@ def update_draft_status(draft_id, status):
     conn.close()
 
 
+def job_exists(job_id):
+    """Returns True if a job with this id exists in the jobs table."""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT 1 FROM jobs WHERE id = ?", (job_id,))
+    exists = cursor.fetchone() is not None
+    conn.close()
+    return exists
+
+
+def get_job_basic_info(job_id):
+    """Returns (title, company) for a job, or None if it doesn't exist."""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT title, company FROM jobs WHERE id = ?", (job_id,))
+    row = cursor.fetchone()
+    conn.close()
+    return row
+
+
+def ensure_application_row(job_id):
+    """
+    Creates an applications row for this job if one doesn't already
+    exist, defaulting to the start of the funnel. Safe to call
+    repeatedly; INSERT OR IGNORE relies on the UNIQUE constraint on
+    applications.job_id.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    conn.execute(
+        """
+        INSERT OR IGNORE INTO applications (job_id, tailored, applied, status, last_updated)
+        VALUES (?, 0, 0, 'not_applied', CURRENT_TIMESTAMP)
+        """,
+        (job_id,),
+    )
+    conn.commit()
+    conn.close()
+
+
+def update_application_status(job_id, status, mark_tailored=False, mark_applied=False):
+    """
+    Updates an application's funnel status, and stamps the tailored
+    or applied milestone with the current time only the first time
+    each is set (the WHERE ... = 0 guard makes this idempotent, so
+    sending the same command twice by accident doesn't overwrite an
+    earlier, real timestamp).
+    """
+    ensure_application_row(job_id)
+    conn = sqlite3.connect(DB_PATH)
+
+    if mark_tailored:
+        conn.execute(
+            "UPDATE applications SET tailored = 1, tailored_date = CURRENT_TIMESTAMP "
+            "WHERE job_id = ? AND tailored = 0",
+            (job_id,),
+        )
+    if mark_applied:
+        conn.execute(
+            "UPDATE applications SET applied = 1, applied_date = CURRENT_TIMESTAMP "
+            "WHERE job_id = ? AND applied = 0",
+            (job_id,),
+        )
+
+    conn.execute(
+        "UPDATE applications SET status = ?, last_updated = CURRENT_TIMESTAMP WHERE job_id = ?",
+        (status, job_id),
+    )
+    conn.commit()
+    conn.close()
+
+
 def build_tailor_message(title, company, draft_data, cover_letter_hook, status):
     """
     Formats a draft's bullets, cover letter hook, and any validation
@@ -136,13 +207,14 @@ def handle_tailor(job_id):
 
 
 def handle_approve(job_id):
-    """Marks a job's draft as approved."""
+    """Marks a job's draft as approved and starts tracking it in the application funnel."""
     row = get_draft(job_id)
     if row is None:
         return f"No draft found for job {job_id}."
 
     title, company, draft_id, _, _, _ = row
     update_draft_status(draft_id, "approved")
+    update_application_status(job_id, "not_applied", mark_tailored=True)
     return f"Approved: {title} at {company}. Ready to build the actual document next."
 
 
@@ -157,26 +229,119 @@ def handle_reject(job_id):
     return f"Rejected: {title} at {company}."
 
 
+def handle_applied(job_id):
+    """Marks a job as actually applied to."""
+    info = get_job_basic_info(job_id)
+    if info is None:
+        return f"No job found with ID {job_id}."
+
+    title, company = info
+    update_application_status(job_id, "applied", mark_applied=True)
+    return f"Marked applied: {title} at {company}."
+
+
+def handle_interview(job_id):
+    """Moves a job to the interview stage."""
+    info = get_job_basic_info(job_id)
+    if info is None:
+        return f"No job found with ID {job_id}."
+
+    title, company = info
+    update_application_status(job_id, "interview")
+    return f"Interview stage: {title} at {company}. Good luck."
+
+
+def handle_rejected(job_id):
+    """Marks a job as rejected after applying (distinct from rejecting a draft before applying)."""
+    info = get_job_basic_info(job_id)
+    if info is None:
+        return f"No job found with ID {job_id}."
+
+    title, company = info
+    update_application_status(job_id, "rejected")
+    return f"Marked rejected: {title} at {company}."
+
+
+def handle_offer(job_id):
+    """Marks a job as having received an offer."""
+    info = get_job_basic_info(job_id)
+    if info is None:
+        return f"No job found with ID {job_id}."
+
+    title, company = info
+    update_application_status(job_id, "offer")
+    return f"Offer: {title} at {company}. Congratulations."
+
+
+def handle_noresponse(job_id):
+    """Marks a job as having gone quiet after applying."""
+    info = get_job_basic_info(job_id)
+    if info is None:
+        return f"No job found with ID {job_id}."
+
+    title, company = info
+    update_application_status(job_id, "no_response")
+    return f"Marked no response: {title} at {company}."
+
+
+def handle_pipeline():
+    """Returns every tracked application with its job title, company, and current status."""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        SELECT jobs.title, jobs.company, applications.status
+        FROM applications
+        JOIN jobs ON applications.job_id = jobs.id
+        ORDER BY applications.last_updated DESC
+        """
+    )
+    rows = cursor.fetchall()
+    conn.close()
+
+    if not rows:
+        return "No applications tracked yet."
+
+    lines = ["Application pipeline:"]
+    for title, company, status in rows:
+        lines.append(f"[{status}] {title} at {company}")
+    return "\n".join(lines)
+
+
 COMMAND_HANDLERS = {
     "/tailor": handle_tailor,
     "/approve": handle_approve,
     "/reject": handle_reject,
+    "/applied": handle_applied,
+    "/interview": handle_interview,
+    "/rejected": handle_rejected,
+    "/offer": handle_offer,
+    "/noresponse": handle_noresponse,
+}
+
+NO_ARG_COMMANDS = {
+    "/pipeline": handle_pipeline,
 }
 
 
 def process_message(text):
     """
     Parses a message in the form "/command job_id" and dispatches it
-    to the matching handler. Returns None if the message's first
-    word isn't a recognized command at all (so ordinary chat text is
-    silently ignored), or a usage message if the command is
-    recognized but malformed.
+    to the matching handler. Commands in NO_ARG_COMMANDS (like
+    /pipeline) take no job_id and are dispatched directly. Returns
+    None if the message's first word isn't a recognized command at
+    all (so ordinary chat text is silently ignored), or a usage
+    message if a job_id command is recognized but malformed.
     """
     parts = text.strip().split()
     if not parts:
         return None
 
     command = parts[0].lower()
+
+    if command in NO_ARG_COMMANDS:
+        return NO_ARG_COMMANDS[command]()
+
     handler = COMMAND_HANDLERS.get(command)
     if handler is None:
         return None
