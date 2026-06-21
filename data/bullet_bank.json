@@ -1,0 +1,218 @@
+{
+  "bullet_bank_version": "v1-draft",
+  "generated_date": "2026-06-21",
+  "source": "Aman_Resume_Standard.pdf",
+  "review_status": "needs_user_review",
+  "bullets": [
+    {
+      "bullet_id": "INF_FT_01",
+      "role": "Business Analyst - Full Time",
+      "company": "Infineon Technologies AG",
+      "dates": "Sep 2025 - Mar 2026",
+      "text": "Enhanced and migrated the Design-Win Target Achievement Dashboard with interactive insights and ongoing improvements.",
+      "hard_skills": ["Tableau", "Dashboard Development", "Dashboard Migration"],
+      "soft_skills": ["Continuous Improvement"],
+      "keywords": ["Tableau", "dashboard migration", "data visualization", "interactive dashboards", "BI development"]
+    },
+    {
+      "bullet_id": "INF_FT_02",
+      "role": "Business Analyst - Full Time",
+      "company": "Infineon Technologies AG",
+      "dates": "Sep 2025 - Mar 2026",
+      "text": "Created a Funnel Management Dashboard that enabled the management and internal stakeholders to identify the applications that contribute to 80%, 19% and 1% of Infineon business.",
+      "hard_skills": ["Tableau", "Funnel Analysis", "Data Visualization"],
+      "soft_skills": ["Stakeholder Communication", "Cross-functional Collaboration", "Business Insight Translation"],
+      "keywords": ["funnel analysis", "Tableau", "stakeholder reporting", "business intelligence", "pareto analysis"]
+    },
+    {
+      "bullet_id": "INF_FT_03",
+      "role": "Business Analyst - Full Time",
+      "company": "Infineon Technologies AG",
+      "dates": "Sep 2025 - Mar 2026",
+      "text": "Created an Application Rules and Consequences Dashboard for transparency and resource optimization.",
+      "hard_skills": ["Tableau", "Dashboard Design"],
+      "soft_skills": ["Process Transparency", "Resource Optimization", "Analytical Thinking"],
+      "keywords": ["resource optimization", "process transparency", "Tableau", "dashboard design"]
+    },
+    {
+      "bullet_id": "INF_FT_04",
+      "role": "Business Analyst - Full Time",
+      "company": "Infineon Technologies AG",
+      "dates": "Sep 2025 - Mar 2026",
+      "text": "Maintained and refined existing Tableau dashboards based on internal stakeholder's feedback. Additionally built a dashboard navigator to easily navigate all existing and new dashboards.",
+      "hard_skills": ["Tableau", "Dashboard Maintenance", "Navigation Design"],
+      "soft_skills": ["Stakeholder Feedback Integration", "Proactive Improvement Mindset"],
+      "keywords": ["Tableau maintenance", "stakeholder feedback", "dashboard navigation", "UX improvement"]
+    },
+    {
+      "bullet_id": "INF_FT_05",
+      "role": "Business Analyst - Full Time",
+      "company": "Infineon Technologies AG",
+      "dates": "Sep 2025 - Mar 2026",
+      "text": "Built a pipeline for Tableau Dashboards by integrating data from Denodo, Excel, Tableau Extracts.",
+      "hard_skills": ["Tableau", "Denodo", "ETL", "Data Pipeline", "Excel"],
+      "soft_skills": [],
+      "keywords": ["data pipeline", "Denodo", "ETL", "Tableau extracts", "data integration"]
+    },
+    {
+      "bullet_id": "INF_INT_01",
+      "role": "Data Analytics and Visualization - Internship",
+      "company": "Infineon Technologies AG",
+      "dates": "Apr 2025 - Aug 2025",
+      "text": "Created Tableau dashboards to visualize the design-win pipeline development.",
+      "hard_skills": ["Tableau", "Data Visualization"],
+      "soft_skills": [],
+      "keywords": ["Tableau", "pipeline visualization", "dashboard creation"]
+    },
+    {
+      "bullet_id": "INF_INT_02",
+      "role": "Data Analytics and Visualization - Internship",
+      "company": "Infineon Technologies AG",
+      "dates": "Apr 2025 - Aug 2025",
+      "text": "Contributed to derive KPI groups for applications under the current application framework to track performance.",
+      "hard_skills": ["KPI Development", "Performance Tracking"],
+      "soft_skills": ["Analytical Thinking", "Cross-functional Collaboration"],
+      "keywords": ["KPI development", "performance tracking", "business analytics"]
+    },
+    {
+      "bullet_id": "INF_INT_03",
+      "role": "Data Analytics and Visualization - Internship",
+      "company": "Infineon Technologies AG",
+      "dates": "Apr 2025 - Aug 2025",
+      "text": "Performed ETL by using SQL in Denodo/Dive to extract data, transform it and then load it into Tableau for visualization.",
+      "hard_skills": ["SQL", "ETL", "Denodo", "Tableau"],
+      "soft_skills": [],
+      "keywords": ["SQL", "ETL", "Denodo", "data transformation", "Tableau"]
+    },
+    {
+      "bullet_id": "INF_INT_04",
+      "role": "Data Analytics and Visualization - Internship",
+      "company": "Infineon Technologies AG",
+      "dates": "Apr 2025 - Aug 2025",
+      "text": "Conducted web analytics of Block Diagrams for each application to understand the user journey and the CTR of Block Diagrams.",
+      "hard_skills": ["Web Analytics", "CTR Analysis", "User Journey Analysis"],
+      "soft_skills": ["Analytical Thinking"],
+      "keywords": ["web analytics", "CTR", "user journey", "conversion analysis"]
+    },
+    {
+      "bullet_id": "INF_WS_01",
+      "role": "Data Management, Analytics and PPAP - Working Student",
+      "company": "Infineon Technologies AG",
+      "dates": "Apr 2024 - Mar 2025",
+      "text": "Devised an innovative solution for mapping data from different sources. Scraped data from 12,000 XML files using Python, Selenium and BeautifulSoup and mapped them to an artificial unique identifier. Cleaned, transformed and structured it for upload into the PAT (PPAP Automation Tool).",
+      "hard_skills": ["Python", "Selenium", "BeautifulSoup", "Web Scraping", "Data Cleaning", "Data Transformation", "XML Processing"],
+      "soft_skills": ["Proactive Improvement Mindset", "Problem Solving"],
+      "keywords": ["Python", "Selenium", "BeautifulSoup", "web scraping", "data engineering", "XML", "data cleaning", "automation"]
+    },
+    {
+      "bullet_id": "INF_WS_02",
+      "role": "Data Management, Analytics and PPAP - Working Student",
+      "company": "Infineon Technologies AG",
+      "dates": "Apr 2024 - Mar 2025",
+      "text": "Conducted post-processing of PPAP documents.",
+      "hard_skills": ["Document Processing", "Data Quality"],
+      "soft_skills": [],
+      "keywords": ["document processing", "PPAP", "quality assurance"]
+    },
+    {
+      "bullet_id": "INF_WS_03",
+      "role": "Data Management, Analytics and PPAP - Working Student",
+      "company": "Infineon Technologies AG",
+      "dates": "Apr 2024 - Mar 2025",
+      "text": "Managed and tracked project workflows through Jira tickets.",
+      "hard_skills": ["Jira", "Project Tracking"],
+      "soft_skills": ["Project Management", "Organization"],
+      "keywords": ["Jira", "project management", "agile workflow", "ticket tracking"]
+    },
+    {
+      "bullet_id": "INF_WS_04",
+      "role": "Data Management, Analytics and PPAP - Working Student",
+      "company": "Infineon Technologies AG",
+      "dates": "Apr 2024 - Mar 2025",
+      "text": "Maintained and created documentation in Confluence.",
+      "hard_skills": ["Confluence", "Technical Documentation"],
+      "soft_skills": ["Documentation Discipline"],
+      "keywords": ["Confluence", "documentation", "knowledge management"]
+    },
+    {
+      "bullet_id": "LEM_01",
+      "role": "Junior Business Analyst",
+      "company": "Lemnisk (Immensitas Pvt. Ltd.)",
+      "dates": "Jul 2022 - Jul 2023",
+      "text": "Planned and executed email and SMS marketing campaigns, then used the delivery report to improve execution for future campaigns.",
+      "hard_skills": ["Campaign Management", "Email Marketing", "SMS Marketing", "Performance Reporting"],
+      "soft_skills": ["Proactive Improvement Mindset", "Planning"],
+      "keywords": ["marketing campaigns", "email marketing", "SMS marketing", "campaign optimization"]
+    },
+    {
+      "bullet_id": "LEM_02",
+      "role": "Junior Business Analyst",
+      "company": "Lemnisk (Immensitas Pvt. Ltd.)",
+      "dates": "Jul 2022 - Jul 2023",
+      "text": "Extracted campaign performance data from AWS Athena to analyze campaign performance trends over time and across different customer segments for open and click-through rates.",
+      "hard_skills": ["AWS Athena", "SQL", "Data Analysis", "Customer Segmentation"],
+      "soft_skills": ["Analytical Thinking"],
+      "keywords": ["AWS Athena", "SQL", "data analysis", "customer segmentation", "open rate", "click-through rate", "AWS"]
+    },
+    {
+      "bullet_id": "LEM_03",
+      "role": "Junior Business Analyst",
+      "company": "Lemnisk (Immensitas Pvt. Ltd.)",
+      "dates": "Jul 2022 - Jul 2023",
+      "text": "Set up A/B tests, and used T-test to identify the web page with higher conversion rates.",
+      "hard_skills": ["A/B Testing", "Statistical Testing", "T-test", "Conversion Rate Analysis"],
+      "soft_skills": ["Analytical Thinking"],
+      "keywords": ["A/B testing", "statistics", "T-test", "conversion rate optimization", "experimentation"]
+    },
+    {
+      "bullet_id": "LEM_04",
+      "role": "Junior Business Analyst",
+      "company": "Lemnisk (Immensitas Pvt. Ltd.)",
+      "dates": "Jul 2022 - Jul 2023",
+      "text": "Worked with the Sales and Marketing teams to build strategies for stakeholders.",
+      "hard_skills": [],
+      "soft_skills": ["Cross-functional Collaboration", "Stakeholder Communication", "Strategic Thinking"],
+      "keywords": ["cross-functional collaboration", "stakeholder management", "strategy development", "sales and marketing"]
+    },
+    {
+      "bullet_id": "LEM_05",
+      "role": "Junior Business Analyst",
+      "company": "Lemnisk (Immensitas Pvt. Ltd.)",
+      "dates": "Jul 2022 - Jul 2023",
+      "text": "Conducted requirement analysis for stakeholders.",
+      "hard_skills": ["Requirement Analysis"],
+      "soft_skills": ["Stakeholder Communication", "Business Analysis"],
+      "keywords": ["requirement analysis", "business analysis", "stakeholder management"]
+    },
+    {
+      "bullet_id": "FRT_01",
+      "role": "Data Science Intern",
+      "company": "Flip Robo Technologies",
+      "dates": "Feb 2022 - Jul 2022",
+      "text": "Gathered large datasets through APIs, web scraping, and surveys. Cleaned and pre-processed data.",
+      "hard_skills": ["API Integration", "Web Scraping", "Data Cleaning", "Data Pre-processing"],
+      "soft_skills": [],
+      "keywords": ["API", "web scraping", "data collection", "data cleaning", "data preprocessing"]
+    },
+    {
+      "bullet_id": "FRT_02",
+      "role": "Data Science Intern",
+      "company": "Flip Robo Technologies",
+      "dates": "Feb 2022 - Jul 2022",
+      "text": "Conducted exploratory data analysis, and built machine learning pipelines which were assessed using metrics like accuracy, classification report, backtesting, RMSE, MAPE, and R-square.",
+      "hard_skills": ["Exploratory Data Analysis", "Machine Learning", "Model Evaluation", "Python"],
+      "soft_skills": ["Analytical Thinking"],
+      "keywords": ["EDA", "machine learning", "model evaluation", "RMSE", "MAPE", "R-square", "classification", "backtesting"]
+    },
+    {
+      "bullet_id": "FRT_03",
+      "role": "Data Science Intern",
+      "company": "Flip Robo Technologies",
+      "dates": "Feb 2022 - Jul 2022",
+      "text": "Enhanced model performance through hyperparameter optimization using GridSearchCV.",
+      "hard_skills": ["Hyperparameter Tuning", "GridSearchCV", "Machine Learning", "Scikit-learn"],
+      "soft_skills": [],
+      "keywords": ["hyperparameter optimization", "GridSearchCV", "model tuning", "machine learning", "scikit-learn"]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+# Secrets - never commit your real .env file
+.env
+
+# Database - contains your real scraped job data and applications
+db/*.db
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Logs
+logs/
+*.log
+
+# OS clutter
+.DS_Store
+Thumbs.db
