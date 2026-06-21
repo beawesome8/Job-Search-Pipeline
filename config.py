@@ -25,6 +25,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "db", "job_pipeline.db")
 SCHEMA_PATH = os.path.join(BASE_DIR, "db", "schema.sql")
 BULLET_BANK_JSON_PATH = os.path.join(BASE_DIR, "data", "bullet_bank.json")
+TELEGRAM_OFFSET_PATH = os.path.join(BASE_DIR, "data", "telegram_offset.txt")
 
 # --- Secrets ---
 # These come from .env (which you create from .env.example).

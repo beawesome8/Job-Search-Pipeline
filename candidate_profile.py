@@ -1,0 +1,18 @@
+CANDIDATE_PROFILE = (
+    "AI Engineering candidate based in Munich, Germany, transitioning "
+    "from a Business Analyst / Data Analyst background. Three-plus "
+    "years of professional experience at Infineon Technologies AG "
+    "building BI dashboards, ETL pipelines, and data visualizations "
+    "in Tableau and SQL. Master's degree in Business Intelligence and "
+    "Data Science from ISM Germany. Currently developing AI "
+    "Engineering skills: Python, LangChain, FastAPI, prompt "
+    "engineering, and LLM-based agent workflows, demonstrated through "
+    "a completed LangGraph-based research agent project. Also "
+    "experienced with Denodo, AWS, Azure, GCP, Docker, Kubernetes, "
+    "and CI/CD basics; currently working toward the Google Cloud "
+    "Professional Machine Learning Engineer certification. Languages: "
+    "English (C2), German (B2). Holds Indian citizenship only, not an "
+    "EU or German citizen, so explicit EU/German citizenship "
+    "requirements or an absence of visa sponsorship make a role "
+    "ineligible."
+)

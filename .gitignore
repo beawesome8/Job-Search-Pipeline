@@ -18,4 +18,4 @@ logs/
 .DS_Store
 Thumbs.db
 
-candidate_profile.py
+candidate_profile.pydata/telegram_offset.txt
