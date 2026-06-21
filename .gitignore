@@ -17,3 +17,5 @@ logs/
 # OS clutter
 .DS_Store
 Thumbs.db
+
+candidate_profile.py
